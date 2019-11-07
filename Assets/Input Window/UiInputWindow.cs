@@ -41,6 +41,11 @@ public class UiInputWindow : MonoBehaviour
     {
         _cancelButton.onClick.AddListener(HandleCancelButtonClick);
         _okButton.onClick.AddListener(HandleOkButtonClick);
+        _inputField.onValidateInput = (string text, int charIndex, char characterToAdd) =>
+        {
+            return ValidateInput(characterToAdd);
+        };
+            
     }
 
     private void HandleCancelButtonClick()
@@ -49,16 +54,20 @@ public class UiInputWindow : MonoBehaviour
     }
 
     private void HandleOkButtonClick()
-    {
-        var isNumeric = int.TryParse(_inputField.text, out int number);
-        if(isNumeric)
-        {
-            Debug.Log("You entered: " + number.ToString());
-            this.Hide();
-        }
-        else
-        {
-            Debug.Log("You must enter a number!");
-        }
+    {        
+        Debug.Log("You entered: " + _inputField.text);
+        this.Hide();        
     }
+
+    private char ValidateInput(char characterToAdd)
+    {
+        var validCharacters = "1234567890";
+        if (validCharacters.IndexOf(characterToAdd) != -1)
+        {
+            return characterToAdd;
+        }
+
+        return '\0';
+    }
+    
 }

@@ -14,6 +14,6 @@ public class UiInputWindowTesting : MonoBehaviour
 
     private void HandleSubmitButtonClick()
     {
-        _uiInputWindow.Show("This is a test.", "qwerty");
+        _uiInputWindow.Show("This is a test.", "");
     }
 }
