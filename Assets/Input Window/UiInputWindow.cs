@@ -45,11 +45,20 @@ public class UiInputWindow : MonoBehaviour
 
     private void HandleCancelButtonClick()
     {
-        Debug.Log("Cancel clicked!");
+        this.Hide();
     }
 
     private void HandleOkButtonClick()
     {
-        Debug.Log("Ok clicked!");
+        var isNumeric = int.TryParse(_inputField.text, out int number);
+        if(isNumeric)
+        {
+            Debug.Log("You entered: " + number.ToString());
+            this.Hide();
+        }
+        else
+        {
+            Debug.Log("You must enter a number!");
+        }
     }
 }
