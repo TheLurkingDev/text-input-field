@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiInputWindow : MonoBehaviour
 {
     private Button _okButton;
     private Button _cancelButton;
+    private TextMeshProUGUI _titleText;
+    private TMP_InputField _inputField;
 
     private void Awake()
     {
@@ -13,9 +16,12 @@ public class UiInputWindow : MonoBehaviour
         Hide();
     }
 
-    public void Show()
+    public void Show(string titleText, string inputFieldText)
     {
         this.gameObject.SetActive(true);
+
+        _titleText.text = titleText;
+        _inputField.text = inputFieldText;
     }
 
     public void Hide()
@@ -27,6 +33,8 @@ public class UiInputWindow : MonoBehaviour
     {
         _okButton = transform.Find("OkButton").GetComponent<Button>();
         _cancelButton = transform.Find("CancelButton").GetComponent<Button>();
+        _titleText = transform.Find("TitleText").GetComponent<TextMeshProUGUI>();
+        _inputField = transform.Find("InputField (TMP)").GetComponent<TMP_InputField>();
     }
 
     private void SetButtonClickHandlers()
