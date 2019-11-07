@@ -12,7 +12,8 @@ public class UiInputWindow : MonoBehaviour
     private void Awake()
     {
         GetButtonReferences();
-        SetButtonClickHandlers();
+        SetClickHandlers();
+        SetInputFieldValidation();
         Hide();
     }
 
@@ -37,15 +38,20 @@ public class UiInputWindow : MonoBehaviour
         _inputField = transform.Find("InputField (TMP)").GetComponent<TMP_InputField>();
     }
 
-    private void SetButtonClickHandlers()
+    private void SetClickHandlers()
     {
         _cancelButton.onClick.AddListener(HandleCancelButtonClick);
-        _okButton.onClick.AddListener(HandleOkButtonClick);
+        _okButton.onClick.AddListener(HandleOkButtonClick);                  
+    }
+
+    private void SetInputFieldValidation()
+    {
         _inputField.onValidateInput = (string text, int charIndex, char characterToAdd) =>
         {
             return ValidateInput(characterToAdd);
         };
-            
+
+        _inputField.characterLimit = 10;
     }
 
     private void HandleCancelButtonClick()
