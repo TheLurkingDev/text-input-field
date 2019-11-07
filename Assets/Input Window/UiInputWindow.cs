@@ -25,19 +25,8 @@ public class UiInputWindow : MonoBehaviour
 
     private void GetButtonReferences()
     {
-        var buttons = GetComponentsInChildren<Button>();
-        foreach (Button button in buttons)
-        {
-            if (button.name.Contains("Cancel"))
-            {
-                _cancelButton = button;
-            }
-
-            if (button.name.Contains("Ok"))
-            {
-                _okButton = button;
-            }
-        }
+        _okButton = transform.Find("OkButton").GetComponent<Button>();
+        _cancelButton = transform.Find("CancelButton").GetComponent<Button>();
     }
 
     private void SetButtonClickHandlers()
